@@ -2,29 +2,29 @@
 # Imports:
 ###############
 # Import AWS service class's
-from clarify.utils import ClarifyUtils
+# from clarify.utils import ClarifyUtils
 
 # Import STD Python modules
 import os
 
 
-class ClarifyS3(object):
+class ClarifyBuildSpec(object):
     """
-    Simplified commands that interface with the Amazon S3 service
+    Command groups that can be used in conjunction with CodeBuild buildspec files. 
 
     Usage:
-        clarify s3 --help
-        clarify s3 {SubCommand}
-        clarify s3 --bucket myBucket {SubCommand}
+        clarify buildspec --help
+        clarify buildspec {SubCommand}
+        clarify buildspec --bucket myBucket {SubCommand}
 
     Available Subcommands:
         upload:  Uploads a file or folder to a specified Amazon S3 bucket
     """
 
 
-    def __init__(self, session, expiration_time=72, expiration_format='H'):
+    def __init__(self, session):
         """
-        Instantiation point for the clarify ClarifyS3() Class
+        Instantiation point for the clarify ClarifyBuildSpec() Class
 
         Args:
             session (object): The AWS session state instantiated from calling clarify
@@ -32,11 +32,11 @@ class ClarifyS3(object):
         Returns: None
         """
         # Import Modules
-        self.utils = ClarifyUtils()
+        # self.utils = ClarifyUtils()
 
         # Set the S3 connector objects
-        self.s3Resource = session.resource('s3')
-        self.s3Client   = session.client('s3')
+        # self.s3Resource = session.resource('s3')
+        # self.s3Client   = session.client('s3')
 
 
     def upload(self, bucket, path, s3key=None):
@@ -49,6 +49,7 @@ class ClarifyS3(object):
         Usage:
             clarify s3 upload --help
             clarify s3 upload --bucket myS3Bucket /var/lib/somedir/config.file
+            clarify s3 upload myS3Bucket /var/lib/somedir/config.file config.ini
             clarify s3 upload --bucket myS3Bucket --path /var/lib/somedir/config.file
             clarify s3 upload --bucket myS3Bucket --path /var/lib/somedir/config.file --s3key newfile.name
             clarify s3 upload --bucket myS3Bucket /var/lib/somedir

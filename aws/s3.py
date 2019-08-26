@@ -46,7 +46,7 @@ class ClarifyS3(object):
         self.s3Client   = session.client('s3')
 
 
-    def upload(self, bucket, path, s3key=None):
+    def upload(self, path, bucket, s3key=None):
         """
         Uploads a file or folder to a specified Amazon S3 bucket
 
@@ -55,7 +55,8 @@ class ClarifyS3(object):
 
         Usage:
             clarify s3 upload --help
-            clarify s3 upload --bucket myS3Bucket /var/lib/somedir/config.file
+            clarify s3 upload /var/lib/somedir/config.file myS3Bucket
+            clarify s3 upload --path /var/lib/somedir/config.file  --bucket myS3Bucket
             clarify s3 upload --bucket myS3Bucket --path /var/lib/somedir/config.file
             clarify s3 upload --bucket myS3Bucket --path /var/lib/somedir/config.file --s3key newfile.name
             clarify s3 upload --bucket myS3Bucket /var/lib/somedir
